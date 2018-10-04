@@ -1,25 +1,25 @@
 plugins {
     id 'java'
 }
-
+apply plugin: 'java'
 
 group 'com.calc'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                'Implementation-Version': version
+                
+    }
+}
+
 repositories {
     mavenCentral()
 }
-/*jfx {
-    //name etc.
 
-    bundler = 'exe'
-    needShortcut = true
-    bundleArguments = [
-            installdirChooser: 'true'
-    ]
-}*/
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

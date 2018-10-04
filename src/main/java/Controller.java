@@ -5,28 +5,30 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 
 public class Controller {
-
     @FXML
     private Label lbl_result;
     private long number1=0;
     private String operator= "";
     private boolean start= true;
+    @FXML
+    private Button btn_backspace;
+    @FXML
+    private Button btn_clean;
 
     model model=new model();
+
     @FXML
     public void numbers(ActionEvent event){
         if (start){
             lbl_result.setText("");
             start=false;
         }
-
         String value=((Button)event.getSource()).getText();
         lbl_result.setText(lbl_result.getText()+value);
     }
 
     @FXML
     public void operator(ActionEvent event){
-
         String value=((Button)event.getSource()).getText();
         op(value);
     }
@@ -68,10 +70,21 @@ public class Controller {
             if (st.equals("=") || st.equals("*") || st.equals("/") ||
                     st.equals("+") || st.equals("-") )
                 op(st);
-
-
         }catch (Exception e){
-
+            System.err.println(e.toString());
+        }
+    }
+    @FXML
+    public void sign(ActionEvent event){
+        String value=((Button)event.getSource()).getText();
+        if(value.equals("C")){
+            number1=0;
+            operator= "";
+            start= true;
+            lbl_result.setText("");
+        }else if(value.equals("BS")){
+            String val=lbl_result.getText().toString();
+            lbl_result.setText(val.substring(0,(val.length()-1)));
         }
     }
 }
