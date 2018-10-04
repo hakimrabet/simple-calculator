@@ -77,14 +77,20 @@ public class Controller {
     @FXML
     public void sign(ActionEvent event){
         String value=((Button)event.getSource()).getText();
-        if(value.equals("C")){
-            number1=0;
-            operator= "";
-            start= true;
-            lbl_result.setText("");
-        }else if(value.equals("BS")){
-            String val=lbl_result.getText().toString();
-            lbl_result.setText(val.substring(0,(val.length()-1)));
+
+        if(value.equals("C")) {
+                number1 = 0;
+                operator = "";
+                start = true;
+                lbl_result.setText("");
+        }
+        if(value.equals("BS")){
+
+                String val = lbl_result.getText().toString();
+                if(!val.isEmpty())
+                    lbl_result.setText(val.substring(0, (val.length() - 1)));
+                else
+                    return;
         }
     }
 }
